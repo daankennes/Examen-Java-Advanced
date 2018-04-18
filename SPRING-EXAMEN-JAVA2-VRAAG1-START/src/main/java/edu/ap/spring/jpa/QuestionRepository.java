@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QuestionRepository extends CrudRepository<Question, Long> {
 	List<Question> findAll();
-	List<Question> findByQuestion(String question);
+	Question findByQuestion(String question);
 	List<Question> findByAnswer(String answer);
 }
 

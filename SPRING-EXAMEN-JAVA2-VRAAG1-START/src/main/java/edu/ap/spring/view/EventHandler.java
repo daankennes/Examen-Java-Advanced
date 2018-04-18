@@ -42,57 +42,10 @@ public class EventHandler {
 
 	public void whenButtonClicked(ActionEvent actionEvent) {
     	
-    	/*String question = ui.getQuestion().getText();
-    	this.ui.setLabel("test");
-    	String test = eightBall.getRandomAnswer(question);
-    	List<Question> alreadyanswered = repository.findByQuestion(question);
-    	int size = alreadyanswered.size();
-    	int size2 = answersgiven.size();*/
-    		
-    	String question = ui.getQuestion().getText();
-    	//System.out.println(question);
-    	String definitiveAnswer;
     	
-    	//check if question has been answered before
-    	List<Question> alreadyanswered = repository.findByQuestion(question);
+    	this.ui.setLabel(eightBall.getRandomAnswer(this.ui.getQuestion().getText()));
     	
-    	//question has not been answered before
-    	if (alreadyanswered.size() == 0) {
-    		//check if answer has been given before
-    		
-    		//all answers have been given before
-    		if (answersgiven.size() >= 8) {
-    			definitiveAnswer = eightBall.getRandomAnswer(question);
-    		}
-    		//not all answers have been given before: keep trying
-    		else {
-    			definitiveAnswer = eightBall.getRandomAnswer(question);
-    			while (answersgiven.contains(definitiveAnswer)) {
-    				definitiveAnswer = eightBall.getRandomAnswer(question);
-    			}
-    			answersgiven.add(definitiveAnswer);
-    		}
-    		repository.save(new Question(question, definitiveAnswer));
-    	} 
-    	//return existing answer
-    	else {
-    		definitiveAnswer = alreadyanswered.get(0).getAnswer();
-    	}
-    	
-    	this.ui.setLabel(definitiveAnswer);
-    	
-    	// log data
-    	System.out.println(answersgiven);
-    	System.out.println("All questions:");
-    	repository.findAll().forEach(System.out::println);
-    	
-    	
-    	//User user = new User(username, password);
-        //repository.save(user);
-
-        /*System.out.println(user.toString() + " saved in repository");
-        System.out.println("Find all : ") ;*/
-        // repository.findAll().forEach(System.out::println);
+    
     }
 
 }
